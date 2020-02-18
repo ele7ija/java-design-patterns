@@ -1,4 +1,4 @@
-package com.github.ele7ija.my_delegation_0;
+package com.iluwatar.my_delegation_0;
 
 public class LargeCapsTextFormat implements TextFormat {
 

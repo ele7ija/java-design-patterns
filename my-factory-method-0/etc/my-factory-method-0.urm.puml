@@ -1,0 +1,75 @@
+@startuml
+package com.iluwatar.my_factory_method_0.library {
+  class Database {
+    - ip : String
+    - type : String
+    + Database()
+    + Database(active : boolean, dateAdded : Calendar, dateRemoved : Calendar, activities : ArrayList<String>, ip : String, type : String)
+    + Database(ip : String, type : String)
+    + logFormat() : String
+  }
+  class Drive {
+    - capacity : int
+    - rpms : int
+    + Drive()
+    + Drive(active : boolean, dateAdded : Calendar, dateRemoved : Calendar, activities : ArrayList<String>, capacity : int, rpms : int)
+    + logFormat() : String
+  }
+  abstract class Resource {
+    - active : boolean
+    - activities : ArrayList<String>
+    - dateAdded : Calendar
+    - dateRemoved : Calendar
+    + Resource()
+    + Resource(active : boolean, dateAdded : Calendar, dateRemoved : Calendar, activities : ArrayList<String>)
+    + getActivities() : ArrayList<String>
+    + getDateAdded() : Calendar
+    + getDateRemoved() : Calendar
+    + isActive() : boolean
+    + logFormat() : String {abstract}
+    + setActive(active : boolean)
+    + setActivities(activities : ArrayList<String>)
+    + setDateAdded(dateAdded : Calendar)
+    + setDateRemoved(dateRemoved : Calendar)
+  }
+  class ResourceFactory {
+    + ResourceFactory()
+    + getInstance(rt : ResourceType) : Resource
+  }
+  enum ResourceType {
+    + DB {static}
+    + DRIVE {static}
+    + VM {static}
+    + valueOf(name : String) : ResourceType {static}
+    + values() : ResourceType[] {static}
+  }
+  class VirtualMachine {
+    - category : String
+    - ip : String
+    + VirtualMachine()
+    + VirtualMachine(active : boolean, dateAdded : Calendar, dateRemoved : Calendar, activities : ArrayList<String>, ip : String, category : String)
+    + logFormat() : String
+  }
+}
+package com.iluwatar.my_factory_method_0 {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Client {
+    - resources : ArrayList<Resource>
+    - rf : ResourceFactory
+    + Client()
+    + addResource(rt : ResourceType)
+    + getResources() : ArrayList<Resource>
+    + getRf() : ResourceFactory
+    + setResources(resources : ArrayList<Resource>)
+    + setRf(rf : ResourceFactory)
+  }
+}
+Client -->  "-resources" Resource
+Client -->  "-rf" ResourceFactory
+Database --|> Resource 
+Drive --|> Resource 
+VirtualMachine --|> Resource 
+@enduml
