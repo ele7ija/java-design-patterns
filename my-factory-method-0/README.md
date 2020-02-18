@@ -10,6 +10,6 @@ Uses the library. If there were new features added to the library, client
 should use it with as least code changes as possible.
 
 ### UML
-Available at [uml-diagram](my-factory-method-0.urm.png)
+Available at [uml-diagram](./etc/my-factory-method-0.urm.png)
 
 > PlantUML built using: `java -jar plantuml.jar sequenceDiagram.puml`
