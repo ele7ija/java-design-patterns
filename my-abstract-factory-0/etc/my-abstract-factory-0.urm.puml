@@ -1,0 +1,17 @@
+@startuml
+package com.iluwatar.my_abstract_factory_0 {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Client {
+    - waf : WindowsAbstractFactory
+    - windows : ArrayList<Window>
+    + Client()
+    + addWindow(w : Window)
+    + createWindows()
+    + drawWindows()
+    + setType(wft : WindowsFactoryType)
+  }
+}
+@enduml
