@@ -1,0 +1,48 @@
+@startuml
+package com.iluwatar.my_bridge_0 {
+  class App {
+    + App()
+    - createWindows(cm : ColorMode) : ArrayList<Window> {static}
+    - drawWindows(windows : ArrayList<Window>) {static}
+    + main(args : String[]) {static}
+  }
+  interface ColorMode {
+    + accentsColor() : String {abstract}
+    + primaryColor() : String {abstract}
+    + secondaryColor() : String {abstract}
+  }
+  class DarkColorMode {
+    + DarkColorMode()
+    + accentsColor() : String
+    + primaryColor() : String
+    + secondaryColor() : String
+  }
+  class GraphViewWindow {
+    + GraphViewWindow()
+    + GraphViewWindow(cm : ColorMode)
+    + draw()
+  }
+  class LightColorMode {
+    + LightColorMode()
+    + accentsColor() : String
+    + primaryColor() : String
+    + secondaryColor() : String
+  }
+  class ToolboxWindow {
+    + ToolboxWindow()
+    + ToolboxWindow(cm : ColorMode)
+    + draw()
+  }
+  abstract class Window {
+    ~ cm : ColorMode
+    + Window()
+    + Window(cm : ColorMode)
+    + draw() {abstract}
+  }
+}
+Window -->  "-cm" ColorMode
+DarkColorMode ..|> ColorMode 
+GraphViewWindow --|> Window 
+LightColorMode ..|> ColorMode 
+ToolboxWindow --|> Window 
+@enduml
