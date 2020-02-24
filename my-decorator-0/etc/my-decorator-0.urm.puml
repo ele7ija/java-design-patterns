@@ -1,0 +1,84 @@
+@startuml
+package com.iluwatar.my_decorator_0 {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Ball {
+    - color : String
+    - r : double
+    - weight : double
+    - x : double
+    - y : double
+    + Ball()
+    + Ball(x : double, y : double, r : double, weight : double, color : String)
+    + getColor() : String
+    + getR() : double
+    + getWeight() : double
+    + getX() : double
+    + getY() : double
+    + setColor(color : String)
+    + setR(r : double)
+    + setWeight(weight : double)
+    + setX(x : double)
+    + setY(y : double)
+  }
+  class BaseBall {
+    + BaseBall()
+    + BaseBall(dx : double, dy : double)
+    + BaseBall(x : double, y : double, r : double, weight : double, color : String, dx : double, dy : double)
+  }
+  class BasketBall {
+    + BasketBall()
+    + BasketBall(dx : double, dy : double)
+    + BasketBall(x : double, y : double, r : double, weight : double, color : String, dx : double, dy : double)
+  }
+  class BoundedBall {
+    - brx : int
+    - bry : int
+    - mb : MovableBall
+    - tlx : int
+    - tly : int
+    + BoundedBall(mb : MovableBall)
+    + BoundedBall(mb : MovableBall, tlx : int, tly : int, brx : int, bry : int)
+    + getBrx() : int
+    + getBry() : int
+    + getMb() : MovableBall
+    + getTlx() : int
+    + getTly() : int
+    + move()
+    + setBrx(brx : int)
+    + setBry(bry : int)
+    + setMb(mb : MovableBall)
+    + setTlx(tlx : int)
+    + setTly(tly : int)
+  }
+  class DeceleratingBall {
+    - coefficient : double
+    ~ mb : MovableBall
+    + DeceleratingBall(mb : MovableBall)
+    + DeceleratingBall(mb : MovableBall, coeff : double)
+    + move()
+  }
+  class MovableBall {
+    - dx : double
+    - dy : double
+    + MovableBall()
+    + MovableBall(dx : double, dy : double)
+    + MovableBall(x : double, y : double, r : double, weight : double, color : String, dx : double, dy : double)
+    + display()
+    + getDx() : double
+    + getDy() : double
+    + move()
+    + setDx(dx : double)
+    + setDy(dy : double)
+  }
+}
+DeceleratingBall -->  "-mb" MovableBall
+BoundedBall -->  "-mb" MovableBall
+BaseBall --|> MovableBall 
+BasketBall --|> MovableBall 
+BoundedBall --|> MovableBall 
+DeceleratingBall --|> MovableBall 
+MovableBall --|> Ball 
+@enduml
